@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моделиране с линейни уравнения</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 40px auto;
+            max-width: 1000px;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            font-size: 2.6em;
+        }
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin: 60px 0;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .nav-btn {
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            min-width: 250px;
+            color: white;
+        }
+        .nav-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .btn-general { background: #3498db; }
+        .btn-movement { background: #2ecc71; }
+        .btn-interest { background: #e67e22; }
+        .btn-work { background: #9b59b6; }
+        .btn-mix { background: #e74c3c; }
+
+        h2 {
+            margin-top: 100px;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 2em;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        #general { background: #3498db; }
+        #movement { background: #2ecc71; }
+        #interest { background: #e67e22; }
+        #work { background: #9b59b6; }
+        #mix { background: #e74c3c; }
+
+        .back-to-nav {
+            display: block;
+            text-align: center;
+            margin: 80px auto;
+            padding: 15px 40px;
+            background: #34495e;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            width: fit-content;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        .back-to-nav:hover {
+            background: #2c3e50;
+            transform: translateY(-5px);
+        }
+
+        h3 {
+            color: #2c3e50;
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 6px solid #3498db;
+        }
+        .zadacha {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            padding: 30px;
+            margin: 40px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .zadacha:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+        .show-btn {
+            background: #34495e;
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .show-btn:hover {
+            background: #2c3e50;
+            transform: translateY(-3px);
+        }
+        .reshenie {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8fcfd;
+            border-radius: 12px;
+            border: 1px solid #d0e8f2;
+        }
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            .quick-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-btn {
+                width: 85%;
+            }
+        }
+        .left-column {
+            background: #f0f8ff;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 6px solid #27ae60;
+        }
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .diagram {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            font-size: 1.1em;
+        }
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .otgovor {
+            grid-column: 1 / -1;
+            background: linear-gradient(to right, #d5f4e6, #a8e6cf);
+            color: #1e8449;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.4em;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(39,174,96,0.2);
+        }
+        .check-answer {
+            grid-column: 1 / -1;
+            margin-top: 30px;
+            padding: 25px;
+            background: #e8f4fc;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(52,152,219,0.15);
+        }
+        .check-answer input {
+            padding: 12px;
+            width: 140px;
+            font-size: 1.1em;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .check-answer button {
+            padding: 12px 30px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(39,174,96,0.4);
+        }
+        .check-answer button:hover {
+            background: #219653;
+            transform: translateY(-2px);
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .no-table {
+            color: #777;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Моделиране на текстови задачи с линейни уравнения</h1>
+<p style="text-align:center; font-size:1.1em; color:#555;">Решете задачите самостоятелно, след това проверете решението си!</p>
+
+<div class="quick-nav">
+    <button class="nav-btn btn-general" onclick="document.getElementById('general').scrollIntoView({behavior: 'smooth'});">1. Общ характер</button>
+    <button class="nav-btn btn-movement" onclick="document.getElementById('movement').scrollIntoView({behavior: 'smooth'});">2. Движение</button>
+    <button class="nav-btn btn-interest" onclick="document.getElementById('interest').scrollIntoView({behavior: 'smooth'});">3. Проста лихва</button>
+    <button class="nav-btn btn-work" onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'});">4. Работа</button>
+    <button class="nav-btn btn-mix" onclick="document.getElementById('mix').scrollIntoView({behavior: 'smooth'});">5. Смеси и сплави</button>
+</div>
+
+<h2 id="general">1. Текстови задачи от общ характер</h2>
+
+<div class="zadacha">
+    <h3>Задача 1: Числа и цифри</h3>
+    <p>Цифрата на десетиците на едно двуцифрено число е с 2 по-голяма от цифрата на единиците. Сборът на цифрите е \(\frac{1}{7}\) от числото. Намерете числото.</p>
+    <button class="show-btn" onclick="toggleReshenie('resh1')">Покажи/Скрий решението</button>
+    <div id="resh1" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека цифрата на единиците е <strong>x</strong>.<br>
+                Тогава цифрата на десетиците е <strong>x + 2</strong>.</p>
+                <p>Числото: 10(x + 2) + x = 11x + 20</p>
+                <p>Сборът на цифрите: x + (x + 2) = 2x + 2</p>
+                <p><strong>Уравнение:</strong><br>2x + 2 = \(\frac{11x + 20}{7}\)</p>
+                <p>14x + 14 = 11x + 20<br>3x = 6<br>x = 2</p>
+            </div>
+            <div class="right-column">
+                <p class="no-table">(няма таблица за тази задача)</p>
+            </div>
+        </div>
+        <div class="otgovor">Числото е 42.</div>
+    </div>
+    <div class="check-answer">
+        <label>Твоят отговор за числото: </label>
+        <input type="number" id="answer1">
+        <button onclick="checkAnswer(1, 42)">Провери</button>
+        <p id="result1" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 2: Сбор и разлика на две числа</h3>
+    <p>Сборът на две числа е 85, а разликата им е 23. Намерете числата.</p>
+    <button class="show-btn" onclick="toggleReshenie('resh2')">Покажи/Скрий решението</button>
+    <div id="resh2" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека по-малкото число е <strong>x</strong>.<br>
+                Тогава по-голямото е <strong>x + 23</strong>.</p>
+                <p><strong>Уравнение:</strong><br>x + (x + 23) = 85</p>
+                <p>2x + 23 = 85<br>2x = 62<br>x = 31</p>
+            </div>
+            <div class="right-column">
+                <p class="no-table">(няма таблица за тази задача)</p>
+            </div>
+        </div>
+        <div class="otgovor">Числата са 31 и 54.</div>
+    </div>
+    <div class="check-answer">
+        <label>По-малкото число: </label>
+        <input type="number" id="answer2">
+        <button onclick="checkAnswer(2, 31)">Провери</button>
+        <p id="result2" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 3: Част от едно число равно на част от друго</h3>
+    <p>Едно число е 3 пъти по-голямо от друго. Ако към по-малкото прибавим 20, то ще стане равно на половината от по-голямото. Намерете числата.</p>
+    <button class="show-btn" onclick="toggleReshenie('resh3')">Покажи/Скрий решението</button>
+    <div id="resh3" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека по-малкото число е <strong>x</strong>.<br>
+                Тогава по-голямото е <strong>3x</strong>.</p>
+                <p><strong>Уравнение:</strong><br>x + 20 = \(\frac{3x}{2}\)</p>
+                <p>2x + 40 = 3x<br>40 = x</p>
+            </div>
+            <div class="right-column">
+                <p class="no-table">(няма таблица за тази задача)</p>
+            </div>
+        </div>
+        <div class="otgovor">Числата са 40 и 120.</div>
+    </div>
+    <div class="check-answer">
+        <label>По-малкото число: </label>
+        <input type="number" id="answer3">
+        <button onclick="checkAnswer(3, 40)">Провери</button>
+        <p id="result3" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 4: Пазар – покупка на два вида стоки</h3>
+    <p>В магазин едни ябълки струват 3 лв./кг, а други – 6 лв./кг. Купени са общо 15 кг ябълки от двата вида и е платено 51 лв. Колко килограма са купени от всеки вид?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh4')">Покажи/Скрий решението</button>
+    <div id="resh4" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека от по-евтините е <strong>x</strong> кг.<br>
+                Тогава от по-скъпите е <strong>15 – x</strong> кг.</p>
+                <p><strong>Уравнение:</strong><br>3x + 6(15 – x) = 51</p>
+                <p>3x + 90 – 6x = 51<br>–3x = –39<br>x = 13</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Вид ябълки</th><th>Количество (кг)</th><th>Цена (лв./кг)</th><th>Стойност (лв.)</th></tr>
+                    <tr><td>По-евтини</td><td>x</td><td>3</td><td>3x</td></tr>
+                    <tr><td>По-скъпи</td><td>15 – x</td><td>6</td><td>6(15 – x)</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">От по-евтините: 13 кг<br>От по-скъпите: 2 кг</div>
+    </div>
+    <div class="check-answer">
+        <label>Количество от по-евтините: </label>
+        <input type="number" id="answer4">
+        <button onclick="checkAnswer(4, 13)">Провери</button>
+        <p id="result4" class="result"></p>
+    </div>
+</div>
+
+<button class="back-to-nav" onclick="document.querySelector('.quick-nav').scrollIntoView({behavior: 'smooth'});">↑ Обратно към избора на категории</button>
+
+<h2 id="movement">2. Задачи от движение (по суша и вода)</h2>
+
+<div class="zadacha">
+    <h3>Задача 5: Движение по суша (насрещно)</h3>
+    <p>Двама пешеходци тръгват едновременно насреща един на друг от два града, отдалечени на 30 км, и се срещат след 4 часа. Първият върви с 4 км/ч. С каква скорост върви вторият?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh5')">Покажи/Скрий решението</button>
+    <div id="resh5" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека скоростта на втория е <strong>x</strong> км/ч.</p>
+                <p>За 4 часа първият изминава 16 км.</p>
+                <p>Вторият изминава 4x км.</p>
+                <p><strong>Уравнение:</strong><br>16 + 4x = 30</p>
+                <p>4x = 14<br>x = 3.5</p>
+            </div>
+            <div class="right-column">
+                <div class="diagram">
+                    <svg width="300" height="130" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="30" y1="70" x2="270" y2="70" stroke="#333" stroke-width="4"/>
+                        <circle cx="30" cy="70" r="8" fill="#3498db"/>
+                        <circle cx="270" cy="70" r="8" fill="#3498db"/>
+                        <circle cx="150" cy="70" r="6" fill="#e74c3c"/>
+                        <text x="30" y="50" font-size="16" text-anchor="middle" fill="#333">A</text>
+                        <text x="270" y="50" font-size="16" text-anchor="middle" fill="#333">B</text>
+                        <text x="150" y="90" font-size="14" text-anchor="middle" fill="#e74c3c">C (среща)</text>
+                        <text x="150" y="20" font-size="14" text-anchor="middle" fill="#777">30 км</text>
+                        <!-- Зелената стрелка е повдигната нагоре -->
+                        <line x1="30" y1="30" x2="130" y2="30" stroke="#2ecc71" stroke-width="3" marker-end="url(#arrow)"/>
+                        <text x="80" y="20" font-size="14" text-anchor="middle" fill="#2ecc71">4 км/ч</text>
+                        <line x1="270" y1="100" x2="170" y2="100" stroke="#e67e22" stroke-width="3" marker-end="url(#arrow)"/>
+                        <text x="220" y="110" font-size="14" text-anchor="middle" fill="#e67e22">x км/ч</text>
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                <table>
+                    <tr><th>Пешеходец</th><th>V (км/ч)</th><th>t (ч)</th><th>S (км)</th></tr>
+                    <tr><td>Първи</td><td>4</td><td>4</td><td>16</td></tr>
+                    <tr><td>Втори</td><td>x</td><td>4</td><td>4x</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">Скоростта на втория пешеходец е 3,5 км/ч.</div>
+    </div>
+    <div class="check-answer">
+        <label>Скорост на втория (км/ч): </label>
+        <input type="number" step="any" id="answer5">
+        <button onclick="checkAnswer(5, 3.5)">Провери</button>
+        <p id="result5" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 6: Движение по вода</h3>
+    <p>Лодка изминава едно и също разстояние по течение за 3 часа, а срещу течение – за 5 часа. Скоростта на течението е 2 км/ч. Намерете собствената скорост на лодката.</p>
+    <button class="show-btn" onclick="toggleReshenie('resh6')">Покажи/Скрий решението</button>
+    <div id="resh6" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека собствената скорост е <strong>x</strong> км/ч.</p>
+                <p>По течение: x + 2 км/ч</p>
+                <p>Срещу течение: x – 2 км/ч</p>
+                <p><strong>Уравнение:</strong><br>3(x + 2) = 5(x – 2)</p>
+                <p>3x + 6 = 5x – 10<br>16 = 2x<br>x = 8</p>
+            </div>
+            <div class="right-column">
+                <div class="diagram">
+                    <svg width="320" height="170" viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0" y="70" width="320" height="40" fill="#a0d8ef" opacity="0.4"/>
+                        <line x1="40" y1="90" x2="280" y2="90" stroke="#333" stroke-width="4"/>
+                        <circle cx="40" cy="90" r="8" fill="#3498db"/>
+                        <circle cx="280" cy="90" r="8" fill="#3498db"/>
+                        <text x="40" y="65" font-size="16" text-anchor="middle" fill="#333">A</text>
+                        <text x="280" y="65" font-size="16" text-anchor="middle" fill="#333">B</text>
+                        <text x="160" y="45" font-size="14" text-anchor="middle" fill="#777">разстояние S км</text>
+                        <line x1="60" y1="60" x2="260" y2="60" stroke="#3498db" stroke-width="3" marker-end="url(#arrowflow)"/>
+                        <text x="160" y="55" font-size="14" text-anchor="middle" fill="#3498db">течение 2 км/ч</text>
+                        <g transform="translate(100,110)">
+                            <rect x="-15" y="-10" width="30" height="20" fill="#2ecc71" rx="5"/>
+                            <text x="0" y="5" font-size="12" text-anchor="middle" fill="white">лодка</text>
+                        </g>
+                        <line x1="40" y1="130" x2="130" y2="130" stroke="#2ecc71" stroke-width="3" marker-end="url(#arrowboat)"/>
+                        <text x="85" y="145" font-size="14" text-anchor="middle" fill="#2ecc71">x + 2 км/ч</text>
+                        <g transform="translate(220,110)">
+                            <rect x="-15" y="-10" width="30" height="20" fill="#e67e22" rx="5"/>
+                            <text x="0" y="5" font-size="12" text-anchor="middle" fill="white">лодка</text>
+                        </g>
+                        <line x1="280" y1="130" x2="190" y2="130" stroke="#e67e22" stroke-width="3" marker-end="url(#arrowboat)"/>
+                        <text x="235" y="145" font-size="14" text-anchor="middle" fill="#e67e22">x – 2 км/ч</text>
+                        <defs>
+                            <marker id="arrowflow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#3498db"/>
+                            </marker>
+                            <marker id="arrowboat" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                <table>
+                    <tr><th>Условие</th><th>V (км/ч)</th><th>t (ч)</th><th>S (км)</th></tr>
+                    <tr><td>По течение</td><td>x + 2</td><td>3</td><td>3(x + 2)</td></tr>
+                    <tr><td>Срещу течение</td><td>x – 2</td><td>5</td><td>5(x – 2)</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">Собствената скорост на лодката е 8 км/ч.</div>
+    </div>
+    <div class="check-answer">
+        <label>Собствена скорост (км/ч): </label>
+        <input type="number" id="answer6">
+        <button onclick="checkAnswer(6, 8)">Провери</button>
+        <p id="result6" class="result"></p>
+    </div>
+</div>
+
+<button class="back-to-nav" onclick="document.querySelector('.quick-nav').scrollIntoView({behavior: 'smooth'});">↑ Обратно към избора на категории</button>
+
+<h2 id="interest">3. Задачи от проста лихва</h2>
+
+<div class="zadacha">
+    <h3>Задача 7: Проста лихва – основна сума</h3>
+    <p>Вложени са пари в банка при проста лихва от 5% годишно. След 4 години лихвата е 400 лв. Колко лева е била основната сума?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh7')">Покажи/Скрий решението</button>
+    <div id="resh7" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека основната сума е <strong>x</strong> лв.</p>
+                <p>Лихва: x × 0.05 × 4 = 400</p>
+                <p><strong>Уравнение:</strong><br>0.2x = 400</p>
+                <p>x = 2000</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Величина</th><th>Стойност</th></tr>
+                    <tr><td>Основна сума</td><td>x лв.</td></tr>
+                    <tr><td>Лихвен процент</td><td>5%</td></tr>
+                    <tr><td>Време</td><td>4 години</td></tr>
+                    <tr><td>Лихва</td><td>400 лв.</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">Основната сума е 2000 лв.</div>
+    </div>
+    <div class="check-answer">
+        <label>Основна сума (лв.): </label>
+        <input type="number" id="answer7">
+        <button onclick="checkAnswer(7, 2000)">Провери</button>
+        <p id="result7" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 8: Проста лихва – лихвен процент</h3>
+    <p>Вложени са 5000 лв. в банка при проста лихва. След 3 години лихвата е 900 лв. С какъв годишен лихвен процент са вложени парите?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh8')">Покажи/Скрий решението</button>
+    <div id="resh8" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека лихвеният процент е <strong>x</strong>%.</p>
+                <p>Лихва: 5000 × (x/100) × 3 = 900</p>
+                <p><strong>Уравнение:</strong><br>150x = 900</p>
+                <p>x = 6</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Величина</th><th>Стойност</th></tr>
+                    <tr><td>Основна сума</td><td>5000 лв.</td></tr>
+                    <tr><td>Лихвен процент</td><td>x %</td></tr>
+                    <tr><td>Време</td><td>3 години</td></tr>
+                    <tr><td>Лихва</td><td>900 лв.</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">Годишният лихвен процент е 6%.</div>
+    </div>
+    <div class="check-answer">
+        <label>Лихвен процент (%): </label>
+        <input type="number" id="answer8">
+        <button onclick="checkAnswer(8, 6)">Провери</button>
+        <p id="result8" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 9: Проста лихва – време</h3>
+    <p>Вложени са 8000 лв. при проста лихва от 4% годишно. След колко години лихвата ще бъде 1600 лв.?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh9')">Покажи/Скрий решението</button>
+    <div id="resh9" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека времето е <strong>x</strong> години.</p>
+                <p>Лихва: 8000 × 0.04 × x = 1600</p>
+                <p><strong>Уравнение:</strong><br>320x = 1600</p>
+                <p>x = 5</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Величина</th><th>Стойност</th></tr>
+                    <tr><td>Основна сума</td><td>8000 лв.</td></tr>
+                    <tr><td>Лихвен процент</td><td>4%</td></tr>
+                    <tr><td>Време</td><td>x години</td></tr>
+                    <tr><td>Лихва</td><td>1600 лв.</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">Лихвата ще бъде 1600 лв. след 5 години.</div>
+    </div>
+    <div class="check-answer">
+        <label>Време (години): </label>
+        <input type="number" id="answer9">
+        <button onclick="checkAnswer(9, 5)">Провери</button>
+        <p id="result9" class="result"></p>
+    </div>
+</div>
+
+<button class="back-to-nav" onclick="document.querySelector('.quick-nav').scrollIntoView({behavior: 'smooth'});">↑ Обратно към избора на категории</button>
+
+<h2 id="work">4. Задачи от работа (производителност)</h2>
+
+<div class="zadacha">
+    <h3>Задача 10: Багер и нива</h3>
+    <p>Един багер трябвало да изоре една нива за 12 дни. След като увеличил дневната си норма с 10 декара, той успял да изоре нивата за 10 дни. Колко декара е била нивата?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh10')">Покажи/Скрий решението</button>
+    <div id="resh10" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека дневната норма по план е <strong>x</strong> декара.</p>
+                <p>Тогава площта на нивата е <strong>12x</strong> декара.</p>
+                <p>В действителност дневната норма е <strong>x + 10</strong> декара.</p>
+                <p>С тази норма изорал нивата за 10 дни → площта е <strong>10(x + 10)</strong> декара.</p>
+                <p><strong>Уравнение:</strong><br>12x = 10(x + 10)</p>
+                <p>12x = 10x + 100<br>2x = 100<br>x = 50</p>
+                <p>Площта на нивата е 12 × 50 = 600 декара.</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Вид</th><th>Дневна норма (декара)</th><th>Дни</th><th>Площ (декара)</th></tr>
+                    <tr><td>По план</td><td>x</td><td>12</td><td>12x</td></tr>
+                    <tr><td>В действителност</td><td>x + 10</td><td>10</td><td>10(x + 10)</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">Нивата е 600 декара.</div>
+    </div>
+    <div class="check-answer">
+        <label>Площ на нивата (декара): </label>
+        <input type="number" id="answer10">
+        <button onclick="checkAnswer(10, 600)">Провери</button>
+        <p id="result10" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 11: Стругар и детайли</h3>
+    <p>Стругар искал да произведе определено количество детайли за определен срок, като произвежда по 20 детайла на ден. След като работил така 4 дни, увеличил дневната си норма с 10 детайла и един ден преди срока произвел 300 детайла повече от предвиденото. За колко дни е бил срокът и колко детайла е трябвало да произведе?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh11')">Покажи/Скрий решението</button>
+    <div id="resh11" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека плановият срок е <strong>x</strong> дни.</p>
+                <p>Тогава количеството детайли по план е <strong>20x</strong>.</p>
+                <p>Първите 4 дни произвел 80 детайла.</p>
+                <p>Оставащи дни в действителност: x – 5</p>
+                <p>Произвел за оставащите дни: 30(x – 5)</p>
+                <p>Общо произвел: 80 + 30(x – 5) = 20x + 300</p>
+                <p><strong>Уравнение:</strong><br>80 + 30(x – 5) = 20x + 300</p>
+                <p>80 + 30x – 150 = 20x + 300<br>30x – 70 = 20x + 300<br>10x = 370<br>x = 37</p>
+                <p>Детайли по план: 20 × 37 = 740</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Вид</th><th>Норма (детайла/ден)</th><th>Дни</th><th>Произведени детайли</th></tr>
+                    <tr><td>По план</td><td>20</td><td>x</td><td>20x</td></tr>
+                    <tr><td>В действителност – първи 4 дни</td><td>20</td><td>4</td><td>80</td></tr>
+                    <tr><td>В действителност – останали дни</td><td>30</td><td>x – 5</td><td>30(x – 5)</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">Срокът е 37 дни, поръчката е за 740 детайла.</div>
+    </div>
+    <div class="check-answer">
+        <label>Срок (дни): </label>
+        <input type="number" id="answer11a">
+        <button onclick="checkAnswer(11, 37)">Провери дни</button>
+        <label style="margin-left:20px;">Детайли: </label>
+        <input type="number" id="answer11b">
+        <button onclick="checkAnswer(11, 740)">Провери детайли</button>
+        <p id="result11" class="result"></p>
+    </div>
+</div>
+
+<button class="back-to-nav" onclick="document.querySelector('.quick-nav').scrollIntoView({behavior: 'smooth'});">↑ Обратно към избора на категории</button>
+
+<h2 id="mix">5. Задачи от смеси и сплави</h2>
+
+<div class="zadacha">
+    <h3>Задача 12: Смес от два вида кафе</h3>
+    <p>Имаме два вида кафе – първият съдържа 70% арабика, вторият – 100% арабика. Колко килограма от всеки вид трябва да смесим, за да получим 10 кг смес с 76% арабика?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh12')">Покажи/Скрий решението</button>
+    <div id="resh12" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека от първия вид вземем <strong>x</strong> кг.</p>
+                <p>Тогава от втория вид: 10 – x кг.</p>
+                <p>Арабика: 0.7x + 1.0(10 – x) = 0.76 × 10</p>
+                <p><strong>Уравнение:</strong><br>0.7x + 10 – x = 7.6</p>
+                <p>10 – 0.3x = 7.6<br>0.3x = 2.4<br>x = 8</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Вид</th><th>Количество (кг)</th><th>Арабика (%)</th><th>Арабика (кг)</th></tr>
+                    <tr><td>Първи</td><td>x</td><td>70</td><td>0.7x</td></tr>
+                    <tr><td>Втори</td><td>10 – x</td><td>100</td><td>10 – x</td></tr>
+                    <tr><td>Смес</td><td>10</td><td>76</td><td>7.6</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">От първия вид: 8 кг<br>От втория вид: 2 кг</div>
+    </div>
+    <div class="check-answer">
+        <label>Количество от първия вид: </label>
+        <input type="number" id="answer12">
+        <button onclick="checkAnswer(12, 8)">Провери</button>
+        <p id="result12" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 13: Смес от две сплави</h3>
+    <p>Имаме сплав с 80% злато и сплав с 50% злато. Колко грама от всяка сплав трябва да смесим, за да получим 100 г сплав с 68% злато?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh13')">Покажи/Скрий решението</button>
+    <div id="resh13" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека от 80% сплав вземем <strong>x</strong> г.</p>
+                <p>Тогава от 50% сплав: 100 – x г.</p>
+                <p>Злато: 0.8x + 0.5(100 – x) = 68</p>
+                <p><strong>Уравнение:</strong><br>0.8x + 50 – 0.5x = 68</p>
+                <p>0.3x = 18<br>x = 60</p>
+                <p>От 80% сплав: 60 г<br>От 50% сплав: 40 г</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Сплав</th><th>Количество (г)</th><th>Чисто в-во (злато, %)</th><th>Злато (г)</th></tr>
+                    <tr><td>80%</td><td>x</td><td>80</td><td>0.8x</td></tr>
+                    <tr><td>50%</td><td>100 – x</td><td>50</td><td>0.5(100 – x)</td></tr>
+                    <tr><td>Смес</td><td>100</td><td>68</td><td>68</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">От 80% сплав: 60 г<br>От 50% сплав: 40 г</div>
+    </div>
+    <div class="check-answer">
+        <label>Количество от 80% сплав: </label>
+        <input type="number" id="answer13">
+        <button onclick="checkAnswer(13, 60)">Провери</button>
+        <p id="result13" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 14: Смес от разтвор и вода</h3>
+    <p>Имаме 40% разтвор на сол и чиста вода. Колко грама от 40% разтвор трябва да добавим към 300 г вода, за да получим 20% разтвор?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh14')">Покажи/Скрий решението</button>
+    <div id="resh14" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека добавим <strong>x</strong> г от 40% разтвор.</p>
+                <p>Сол в разтвора: 0.4x г</p>
+                <p>Общо тегло на сместа: 300 + x г</p>
+                <p>Сол в сместа: 0.4x г</p>
+                <p>Концентрация: \(\frac{0.4x}{300 + x} = 0.2\)</p>
+                <p><strong>Уравнение:</strong><br>0.4x = 0.2(300 + x)</p>
+                <p>0.4x = 60 + 0.2x<br>0.2x = 60<br>x = 300</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Разтвор</th><th>Количество разтвор (г)</th><th>Чисто в-во (сол, %)</th><th>Количество чисто в-во (сол, г)</th></tr>
+                    <tr><td>Първи р-р (вода)</td><td>300</td><td>0</td><td>0</td></tr>
+                    <tr><td>Втори р-р</td><td>x</td><td>40</td><td>0.4x</td></tr>
+                    <tr><td>Смес</td><td>300 + x</td><td>20</td><td>0.2(300 + x)</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">Трябва да добавим 300 г от 40% разтвор.</div>
+    </div>
+    <div class="check-answer">
+        <label>Количество от 40% разтвор: </label>
+        <input type="number" id="answer14">
+        <button onclick="checkAnswer(14, 300)">Провери</button>
+        <p id="result14" class="result"></p>
+    </div>
+</div>
+
+<div class="zadacha">
+    <h3>Задача 15: Смес от две сплави</h3>
+    <p>Имаме сплав с 90% злато и сплав с 50% злато. Колко грама от всяка сплав трябва да смесим, за да получим 100 г сплав с 66% злато?</p>
+    <button class="show-btn" onclick="toggleReshenie('resh15')">Покажи/Скрий решението</button>
+    <div id="resh15" class="reshenie">
+        <div class="two-columns">
+            <div class="left-column">
+                <p>Нека от 90% сплав вземем <strong>x</strong> г.</p>
+                <p>Тогава от 50% сплав: 100 – x г.</p>
+                <p>Злато: 0.9x + 0.5(100 – x) = 66</p>
+                <p><strong>Уравнение:</strong><br>0.9x + 50 – 0.5x = 66</p>
+                <p>0.4x = 16<br>x = 40</p>
+                <p>От 90% сплав: 40 г<br>От 50% сплав: 60 г</p>
+            </div>
+            <div class="right-column">
+                <table>
+                    <tr><th>Сплав</th><th>Количество (г)</th><th>Чисто в-во (злато, %)</th><th>Злато (г)</th></tr>
+                    <tr><td>90%</td><td>x</td><td>90</td><td>0.9x</td></tr>
+                    <tr><td>50%</td><td>100 – x</td><td>50</td><td>0.5(100 – x)</td></tr>
+                    <tr><td>Смес</td><td>100</td><td>66</td><td>66</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="otgovor">От 90% сплав: 40 г<br>От 50% сплав: 60 г</div>
+    </div>
+    <div class="check-answer">
+        <label>Количество от 90% сплав: </label>
+        <input type="number" id="answer15">
+        <button onclick="checkAnswer(15, 40)">Провери</button>
+        <p id="result15" class="result"></p>
+    </div>
+</div>
+
+<button class="back-to-nav" onclick="document.querySelector('.quick-nav').scrollIntoView({behavior: 'smooth'});">↑ Обратно към избора на категории</button>
+
+<p style="text-align:center; margin-top:60px;"><a href="index.html" style="font-size:1.2em; color:#3498db; text-decoration:none;">◄ Обратно към началото</a></p>
+
+<script>
+    function toggleReshenie(id) {
+        var el = document.getElementById(id);
+        el.style.display = (el.style.display === "block") ? "none" : "block";
+    }
+
+    function checkAnswer(taskNum, correct) {
+        let inputs = ['answer' + taskNum, 'answer' + taskNum + 'a', 'answer' + taskNum + 'b'];
+        let result = document.getElementById('result' + taskNum);
+        let message = "";
+        let allCorrect = true;
+        inputs.forEach(id => {
+            let input = document.getElementById(id);
+            if (input) {
+                let userAnswer = parseFloat(input.value);
+                if (!isNaN(userAnswer) && Math.abs(userAnswer - correct) < 0.01) {
+                    message += "✓ Правилно! ";
+                } else {
+                    allCorrect = false;
+                    message += "✗ Грешно за " + correct + ". ";
+                }
+            }
+        });
+        result.innerHTML = message;
+        result.style.color = allCorrect ? "green" : "red";
+    }
+</script>
+
+</body>
+</html>
