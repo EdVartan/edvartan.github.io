@@ -19,7 +19,8 @@
             color: white;
             text-align: center;
             padding: 80px 20px;
-            background-image: url('https://media.istockphoto.com/id/2120335300/photo/heap-of-wooden-numbers-on-blue-background.jpg');
+            /* Cartoon група ученици празнуват математика */
+            background-image: url('https://thumbs.dreamstime.com/b/cartoon-illustration-happy-students-teacher-classroom-setting-students-celebrating-successful-math-lesson-422086612.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -103,6 +104,10 @@
             max-width: 100%;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .images img:hover {
+            transform: scale(1.05); /* Интерактивност – леко увеличаване */
         }
         footer {
             background-color: #1e293b;
@@ -118,33 +123,28 @@
     </style>
 </head>
 <body>
-
     <header>
         <h1>Математика за 7. клас</h1>
         <p>Безплатни уроци и подготовка според програмата на МОН за български ученици</p>
     </header>
-
     <nav>
         <a href="#home">Начало</a>
         <a href="#temi">Теми</a>
         <a href="#zadachi">Задачи</a>
         <a href="#kontakt">Контакт</a>
     </nav>
-
     <div class="container">
-
         <div class="section" id="home">
             <h2>Здравейте, ученици от 7. клас!</h2>
             <p>Този сайт е специално за вас – български седмокласници. Тук ще намерите ясни обяснения, примери и задачи по всички теми от учебната програма по математика на МОН.</p>
             <p>Целта ни е да ви помогнем да разбирате по-добре материала, да се подготвите за контролни и НВО.</p>
-
             <div class="images">
-                <img src="https://prepodavame.bg/wp-content/uploads/2025/02/mateatar-1.webp" alt="Ученици учат математика в клас">
-                <img src="https://www.techtipsmedia.com/wp-content/uploads/2021/04/CTO.jpg" alt="Български ученици на урок по математика">
-                <img src="https://classroomtech.bg/wp-content/uploads/2021/05/DSCF0354-1068x801.jpg" alt="Ученици решават задачи">
+                <!-- Момиче с раница + момчета ентусиазирани -->
+                <img src="https://thumbs.dreamstime.com/b/adorable-schoolgirl-ready-class-cheerful-illustration-young-student-backpack-cute-happy-carrying-red-s-smiling-407880299.jpg" alt="Сладурско cartoon момиче с раница, готова за училище">
+                <img src="https://thumbs.dreamstime.com/b/cartoon-illustration-happy-school-boy-jumping-classroom-other-students-teacher-scene-depicts-lively-back-to-422089092.jpg" alt="Щастливо cartoon момче скача от радост в клас">
+                <img src="https://thumbs.dreamstime.com/b/smiling-cartoon-boy-student-book-apple-classroom-cheerful-d-brown-hair-blue-shirt-sits-attentively-wooden-desk-424096053.jpg" alt="Cartoon момче с книга и ябълка в клас">
             </div>
         </div>
-
         <div class="section" id="temi">
             <h2>Теми от учебната програма по математика за 7. клас (МОН 2024/2025)</h2>
             <ul class="temi">
@@ -158,20 +158,19 @@
                 <li><a href="#">Статистика и вероятности</a></li>
                 <li><a href="#">Координатна система и графики</a></li>
             </ul>
-
             <div class="images">
-                <img src="https://www.book.store.bg/dcrimg/237851/spravochni-tablici-po-matematika-za-5-6-i-7-klas.jpg" alt="Справочни таблици по математика">
-                <img src="https://static.ucha.se/vidimgs/30122020-Godishen-pregovor-Osnovni-geometrichni-figuri.jpg" alt="Геометрични фигури">
-                <img src="https://static.ucha.se/vidimgs/10032018-24-Probno-kontrolno-Chast-1-Osnovni-geometrichni-figuri.jpg" alt="Урок по геометрия">
+                <!-- Групи ученици по математика -->
+                <img src="https://thumbs.dreamstime.com/b/cartoon-illustration-teacher-explaining-math-concepts-chalkboard-to-students-classroom-331158261.jpg" alt="Учител обяснява математика на ентусиазирани cartoon ученици">
+                <img src="https://thumbs.dreamstime.com/b/classroom-fun-teacher-happy-students-elementary-school-cartoon-illustration-bright-cheerful-classroom-scene-412603179.jpg" alt="Весел клас с щастливи cartoon ученици">
+                <img src="https://thumbs.dreamstime.com/b/kids-math-class-hand-drawn-picture-children-classroom-school-learning-illustrated-loose-style-vector-eps-available-34633244.jpg" alt="Cartoon деца учат математика в клас">
             </div>
         </div>
-
+        <!-- Останалите секции си остават същите -->
         <div class="section" id="zadachi">
             <h2>Задачи и упражнения</h2>
             <p>Скоро ще добавим интерактивни задачи, пробни тестове за НВО и PDF-и за сваляне.</p>
             <p>Междувременно тренирайте с примерите в темите!</p>
         </div>
-
         <div class="section" id="kontakt">
             <h2>Контакт</h2>
             <p>Имате въпроси или искате да предложите задача? Пишете ни!</p>
@@ -182,13 +181,10 @@
                 <button type="submit" style="background:#3b82f6; color:white; padding:14px 40px; border:none; border-radius:8px; cursor:pointer; font-size:1.1rem;">Изпрати</button>
             </form>
         </div>
-
     </div>
-
     <footer>
         <p>&copy; 2025 Математика 7. клас – За български ученици с ❤</p>
         <p>Съдържанието следва учебната програма на Министерството на образованието и науката</p>
     </footer>
-
 </body>
 </html>
