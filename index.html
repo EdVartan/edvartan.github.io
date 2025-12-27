@@ -18,24 +18,25 @@
             background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: white;
             text-align: center;
-            padding: 80px 20px;
-            /* Cartoon група ученици празнуват математика */
+            padding: 120px 20px;
             background-image: url('https://thumbs.dreamstime.com/b/cartoon-illustration-happy-students-teacher-classroom-setting-students-celebrating-successful-math-lesson-422086612.jpg');
             background-size: cover;
             background-position: center;
         }
         header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
         }
         header p {
-            font-size: 1.4rem;
-            margin-top: 15px;
+            font-size: 1.6rem;
+            margin-top: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
         nav {
-            background-color: #1e293b;
-            padding: 15px 0;
+            background-color: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 18px 0;
             text-align: center;
             position: sticky;
             top: 0;
@@ -44,12 +45,16 @@
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 25px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            margin: 0 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
         nav a:hover {
-            color: #93c5fd;
+            background-color: rgba(59, 130, 246, 0.7);
+            transform: scale(1.05);
         }
         .container {
             max-width: 1200px;
@@ -62,52 +67,82 @@
             padding: 35px;
             margin-bottom: 40px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            position: relative;
         }
-        h2 {
-            color: #1e40af;
-            border-bottom: 4px solid #dbeafe;
-            padding-bottom: 12px;
-            font-size: 1.8rem;
+        #temi {
+            background-image: url('https://thumbs.dreamstime.com/b/cartoon-illustration-teacher-explaining-math-concepts-chalkboard-to-students-classroom-331158261.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        #temi::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.45); /* Тъмен слой за контраст */
+            border-radius: 16px;
+            z-index: 0;
+        }
+        #temi > * {
+            position: relative;
+            z-index: 1;
+        }
+        #temi h2 {
+            color: white;
+            border-bottom: 4px solid rgba(219, 234, 254, 0.6);
+            text-align: center;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+        }
+        /* По-голяма прозрачност на списъка и бутоните */
+        #temi ul.temi {
+            background-color: rgba(255, 255, 255, 0.15); /* Още по-прозрачен контейнер */
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        #temi ul.temi li {
+            background: rgba(30, 50, 100, 0.3); /* Бутоните са по-прозрачни */
+            border-left: 6px solid #93c5fd;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        #temi ul.temi li:hover {
+            background: rgba(30, 50, 100, 0.5); /* При hover стават малко по-плътни */
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+        }
+        #temi ul.temi li a {
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+            font-size: 1.3rem;
+            text-decoration: none;
         }
         ul.temi {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 22px;
             list-style: none;
             padding: 0;
         }
         ul.temi li {
-            background: #eff6ff;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 6px solid #3b82f6;
-            transition: transform 0.3s;
-        }
-        ul.temi li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-        }
-        ul.temi li a {
-            text-decoration: none;
-            color: #1e293b;
-            font-weight: 600;
-            font-size: 1.2rem;
+            padding: 24px;
+            border-radius: 16px;
+            transition: all 0.3s;
         }
         .images {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 35px;
         }
         .images img {
             max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: transform 0.4s;
         }
         .images img:hover {
-            transform: scale(1.05); /* Интерактивност – леко увеличаване */
+            transform: scale(1.08);
         }
         footer {
             background-color: #1e293b;
@@ -117,8 +152,9 @@
             margin-top: 60px;
         }
         @media (max-width: 768px) {
-            header h1 { font-size: 2.4rem; }
-            nav a { display: block; margin: 15px 0; }
+            header h1 { font-size: 2.6rem; }
+            nav a { display: block; margin: 12px 0; padding: 12px; }
+            ul.temi { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -127,30 +163,30 @@
         <h1>Математика за 7. клас</h1>
         <p>Безплатни уроци и подготовка според програмата на МОН за български ученици</p>
     </header>
+
     <nav>
         <a href="#home">Начало</a>
         <a href="#temi">Теми</a>
         <a href="#zadachi">Задачи</a>
         <a href="#kontakt">Контакт</a>
     </nav>
+
     <div class="container">
         <div class="section" id="home">
             <h2>Здравейте, ученици от 7. клас!</h2>
             <p>Този сайт е специално за вас – български седмокласници. Тук ще намерите ясни обяснения, примери и задачи по всички теми от учебната програма по математика на МОН.</p>
             <p>Целта ни е да ви помогнем да разбирате по-добре материала, да се подготвите за контролни и НВО.</p>
             <div class="images">
-                <!-- Момиче с раница + момчета ентусиазирани -->
-                <img src="https://thumbs.dreamstime.com/b/adorable-schoolgirl-ready-class-cheerful-illustration-young-student-backpack-cute-happy-carrying-red-s-smiling-407880299.jpg" alt="Сладурско cartoon момиче с раница, готова за училище">
-                <img src="https://thumbs.dreamstime.com/b/cartoon-illustration-happy-school-boy-jumping-classroom-other-students-teacher-scene-depicts-lively-back-to-422089092.jpg" alt="Щастливо cartoon момче скача от радост в клас">
-                <img src="https://thumbs.dreamstime.com/b/smiling-cartoon-boy-student-book-apple-classroom-cheerful-d-brown-hair-blue-shirt-sits-attentively-wooden-desk-424096053.jpg" alt="Cartoon момче с книга и ябълка в клас">
+                <img src="https://thumbs.dreamstime.com/b/cartoon-illustration-happy-students-teacher-classroom-setting-students-celebrating-successful-math-lesson-422086612.jpg" alt="Ентусиазирани ученици празнуват успех по математика" style="max-width: 900px;">
             </div>
         </div>
+
         <div class="section" id="temi">
             <h2>Теми от учебната програма по математика за 7. клас (МОН 2024/2025)</h2>
             <ul class="temi">
                 <li><a href="#">Цели изрази</a></li>
                 <li><a href="ratsionalni-chisla.html">Рационални числа</a></li>
-                <li><a href="modelirane_s_uravnenie.html">Моделиране с линейни уравнения на текстови задачи </a></li>
+                <li><a href="modelirane_s_uravnenie.html">Моделиране с линейни уравнения на текстови задачи</a></li>
                 <li><a href="#">Линейни уравнения и неравенства</a></li>
                 <li><a href="#">Пропорции, проценти и процентни задачи</a></li>
                 <li><a href="#">Основни геометрични фигури (триъгълници, четириъгълници)</a></li>
@@ -159,18 +195,18 @@
                 <li><a href="#">Координатна система и графики</a></li>
             </ul>
             <div class="images">
-                <!-- Групи ученици по математика -->
-                <img src="https://thumbs.dreamstime.com/b/cartoon-illustration-teacher-explaining-math-concepts-chalkboard-to-students-classroom-331158261.jpg" alt="Учител обяснява математика на ентусиазирани cartoon ученици">
-                <img src="https://thumbs.dreamstime.com/b/classroom-fun-teacher-happy-students-elementary-school-cartoon-illustration-bright-cheerful-classroom-scene-412603179.jpg" alt="Весел клас с щастливи cartoon ученици">
-                <img src="https://thumbs.dreamstime.com/b/kids-math-class-hand-drawn-picture-children-classroom-school-learning-illustrated-loose-style-vector-eps-available-34633244.jpg" alt="Cartoon деца учат математика в клас">
+                <img src="https://thumbs.dreamstime.com/b/cartoon-illustration-teacher-explaining-math-concepts-chalkboard-to-students-classroom-331158261.jpg" alt="Учител обяснява математика">
+                <img src="https://thumbs.dreamstime.com/b/classroom-fun-teacher-happy-students-elementary-school-cartoon-illustration-bright-cheerful-classroom-scene-412603179.jpg" alt="Весел клас">
+                <img src="https://thumbs.dreamstime.com/b/kids-math-class-hand-drawn-picture-children-classroom-school-learning-illustrated-loose-style-vector-eps-available-34633244.jpg" alt="Деца учат математика">
             </div>
         </div>
-        <!-- Останалите секции си остават същите -->
+
         <div class="section" id="zadachi">
             <h2>Задачи и упражнения</h2>
             <p>Скоро ще добавим интерактивни задачи, пробни тестове за НВО и PDF-и за сваляне.</p>
             <p>Междувременно тренирайте с примерите в темите!</p>
         </div>
+
         <div class="section" id="kontakt">
             <h2>Контакт</h2>
             <p>Имате въпроси или искате да предложите задача? Пишете ни!</p>
@@ -182,6 +218,7 @@
             </form>
         </div>
     </div>
+
     <footer>
         <p>&copy; 2025 Математика 7. клас – За български ученици с ❤</p>
         <p>Съдържанието следва учебната програма на Министерството на образованието и науката</p>
