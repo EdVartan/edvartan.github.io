@@ -90,7 +90,7 @@
             min-height: 35px;
         }
         
-        /* Две колони за теста – равномерно */
+        /* Две колони за теста */
         .test-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -164,7 +164,99 @@
 
     <div class="container">
         
-        <!-- ... (секциите #обяснение, #ос, #задачи остават същите) ... -->
+        <div class="section" id="обяснение">
+            <h2>Какво са рационални числа? 😎</h2>
+            <p>Рационалните числа (ℚ) са всички числа, които могат да се представят като дроб <span class="frac"><sup>p</sup><sub>q</sub></span>, където <strong>p</strong> е цяло число, а <strong>q</strong> е естествено число, различно от нула.</p>
+            <p>Към тях спадат: цели числа, обикновени дроби, крайни и периодични десетични дроби.</p>
+            <p><strong>Не са рационални:</strong> π, √2 и други безкрайни непериодични десетични дроби.</p>
+            <div class="example">
+                <strong>Примери:</strong><br>
+                5 = <span class="frac"><sup>5</sup><sub>1</sub></span>, &nbsp; -3 = <span class="frac"><sup>-3</sup><sub>1</sub></span>, &nbsp; 0,75 = <span class="frac"><sup>3</sup><sub>4</sub></span>, &nbsp; 0.(3) = <span class="frac"><sup>1</sup><sub>3</sub></span>
+            </div>
+            
+            <h2 style="margin-top: 50px;">Множества на числата 📊</h2>
+            <div class="interactive sets-diagram">
+                <div class="sets-info" id="setsInfo">Задръж мишката върху овал за описание!</div>
+                <svg width="100%" height="450" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid meet">
+                    <ellipse class="sets-oval" id="q" cx="400" cy="225" rx="360" ry="180" fill="none" stroke="#6b21a8" stroke-width="9"/>
+                    <text x="400" y="80" font-size="42" font-weight="bold" fill="#6b21a8" text-anchor="middle">ℚ</text>
+                    <text x="400" y="390" font-size="18" fill="#6b21a8" text-anchor="middle">-2,5, -3/4, 0,75, 1/2, 0.(3)</text>
+
+                    <ellipse class="sets-oval" id="z" cx="400" cy="225" rx="260" ry="130" fill="none" stroke="#2563eb" stroke-width="9"/>
+                    <text x="400" y="140" font-size="42" font-weight="bold" fill="#2563eb" text-anchor="middle">ℤ</text>
+                    <text x="400" y="330" font-size="18" fill="#2563eb" text-anchor="middle">-10, -5, 0, 3, 15</text>
+
+                    <ellipse class="sets-oval" id="n" cx="400" cy="225" rx="140" ry="75" fill="none" stroke="#16a34a" stroke-width="9"/>
+                    <text x="400" y="190" font-size="42" font-weight="bold" fill="#16a34a" text-anchor="middle">ℕ</text>
+                    <text x="400" y="270" font-size="18" fill="#16a34a" text-anchor="middle">1, 2, 3, 4, 5, ...</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="section" id="ос">
+            <h2>Интерактивна числова ос 🎯</h2>
+            <div class="interactive">
+                <label for="numberSlider">Плъзни, за да поставиш число от -5 до 5:</label><br>
+                <input type="range" id="numberSlider" min="-50" max="50" value="0" step="1">
+                <div id="sliderValue">0</div>
+                <svg id="interactiveAxis" width="100%" height="220" viewBox="0 0 800 220" style="max-width:800px; background:rgba(255,255,255,0.95); border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin:20px auto; display:block;">
+                    <line x1="60" y1="110" x2="740" y2="110" stroke="#333" stroke-width="4"/>
+                    <polygon points="740,110 730,100 730,120" fill="#333"/>
+                    <polygon points="60,110 70,100 70,120" fill="#333"/>
+                    <line x1="100" y1="100" x2="100" y2="120" stroke="#333" stroke-width="3"/><text x="100" y="140" text-anchor="middle" font-size="18">-5</text>
+                    <line x1="160" y1="100" x2="160" y2="120" stroke="#333" stroke-width="3"/><text x="160" y="140" text-anchor="middle" font-size="18">-4</text>
+                    <line x1="220" y1="100" x2="220" y2="120" stroke="#333" stroke-width="3"/><text x="220" y="140" text-anchor="middle" font-size="18">-3</text>
+                    <line x1="280" y1="100" x2="280" y2="120" stroke="#333" stroke-width="3"/><text x="280" y="140" text-anchor="middle" font-size="18">-2</text>
+                    <line x1="340" y1="100" x2="340" y2="120" stroke="#333" stroke-width="3"/><text x="340" y="140" text-anchor="middle" font-size="18">-1</text>
+                    <line x1="400" y1="95" x2="400" y2="125" stroke="#333" stroke-width="4"/><text x="400" y="140" text-anchor="middle" font-size="24" font-weight="bold">0</text>
+                    <line x1="460" y1="100" x2="460" y2="120" stroke="#333" stroke-width="3"/><text x="460" y="140" text-anchor="middle" font-size="18">1</text>
+                    <line x1="520" y1="100" x2="520" y2="120" stroke="#333" stroke-width="3"/><text x="520" y="140" text-anchor="middle" font-size="18">2</text>
+                    <line x1="580" y1="100" x2="580" y2="120" stroke="#333" stroke-width="3"/><text x="580" y="140" text-anchor="middle" font-size="18">3</text>
+                    <line x1="640" y1="100" x2="640" y2="120" stroke="#333" stroke-width="3"/><text x="640" y="140" text-anchor="middle" font-size="18">4</text>
+                    <line x1="700" y1="100" x2="700" y2="120" stroke="#333" stroke-width="3"/><text x="700" y="140" text-anchor="middle" font-size="18">5</text>
+                    <circle id="movingPoint" cx="400" cy="110" r="12" fill="#e91e63"/>
+                </svg>
+            </div>
+            
+            <h2>Числова ос с примери (задръж мишката върху кръгчетата!)</h2>
+            <div style="position:relative;">
+                <div class="tooltip" id="tooltip"></div>
+                <svg width="100%" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" style="max-width:800px; background:rgba(255,255,255,0.95); border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin:20px auto; display:block;">
+                    <line x1="50" y1="180" x2="750" y2="180" stroke="#000" stroke-width="5"/>
+                    <polygon points="750,180 740,170 740,190" fill="#000"/>
+                    <polygon points="50,180 60,170 60,190" fill="#000"/>
+                    <line x1="100" y1="170" x2="100" y2="190" stroke="#000" stroke-width="3"/><text x="100" y="210" text-anchor="middle" font-size="20">-4</text>
+                    <line x1="200" y1="170" x2="200" y2="190" stroke="#000" stroke-width="3"/><text x="200" y="210" text-anchor="middle" font-size="20">-3</text>
+                    <line x1="300" y1="170" x2="300" y2="190" stroke="#000" stroke-width="3"/><text x="300" y="210" text-anchor="middle" font-size="20">-2</text>
+                    <line x1="400" y1="170" x2="400" y2="190" stroke="#000" stroke-width="3"/><text x="400" y="210" text-anchor="middle" font-size="20">-1</text>
+                    <line x1="500" y1="165" x2="500" y2="195" stroke="#000" stroke-width="5"/><text x="500" y="210" text-anchor="middle" font-size="24" font-weight="bold">0</text>
+                    <line x1="600" y1="170" x2="600" y2="190" stroke="#000" stroke-width="3"/><text x="600" y="210" text-anchor="middle" font-size="20">1</text>
+                    <line x1="700" y1="170" x2="700" y2="190" stroke="#000" stroke-width="3"/><text x="700" y="210" text-anchor="middle" font-size="20">2</text>
+                    <circle id="p1" cx="250" cy="180" r="12" fill="#e91e63"/>
+                    <circle id="p2" cx="350" cy="180" r="12" fill="#ff9800"/>
+                    <circle id="p3" cx="450" cy="180" r="12" fill="#4caf50"/>
+                    <circle id="p4" cx="550" cy="180" r="12" fill="#2196f3"/>
+                    <circle id="p5" cx="650" cy="180" r="12" fill="#9c27b0"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="section" id="задачи">
+            <h2>Случайна задача – опитай сега! 🎲</h2>
+            <div class="interactive">
+                <div id="randomTask" style="margin: 40px 0; font-size: 1.9rem; font-weight: 700; color: #1e40af; text-align: center; min-height: 100px; line-height: 1.4;"></div>
+                
+                <div style="text-align: center;">
+                    <input type="text" id="taskAnswer" placeholder="Твоят отговор тук..." style="font-size: 1.4rem; padding: 15px; width: 400px; border-radius: 8px; border: 2px solid #3b82f6; text-align: center;">
+                    <br><br>
+                    <button onclick="checkTask()">Провери</button>
+                    <br><br>
+                    <button onclick="generateTask()" style="background:#16a34a;">Нова задача</button>
+                </div>
+                
+                <div id="taskResult" style="margin-top: 30px; font-size: 1.6rem; text-align: center; min-height: 50px;"></div>
+            </div>
+        </div>
 
         <div class="section" id="действия">
             <h2>Действия с рационални числа</h2>
@@ -265,6 +357,15 @@
                     <input type="text" class="action-input-small" id="mixed2Input" placeholder="">
                     <button onclick="checkMixed2()">Провери</button>
                     <div class="action-result" id="mixed2Result"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="видео">
+            <h2>Кратко видео обяснение 📹</h2>
+            <div class="video-container" id="videoContainer">
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:#000; color:white; display:flex; align-items:center; justify-content:center; font-size:1.5rem; border-radius:12px;">
+                    Видеото се зарежда при скролване...
                 </div>
             </div>
         </div>
@@ -382,10 +483,268 @@
         </div>
     </div>
 
-    <!-- ... (footer и script остават същите както в предишната версия) ... -->
+    <footer>
+        <p>&copy; 2025 Математика 7. клас – За български ученици с ❤ и много забавление!</p>
+        <div style="text-align:center; margin:60px 0;">
+            <button onclick="history.back()" style="padding:15px 35px; font-size:1.4rem; background:#6b7280; color:white; border:none; border-radius:8px; cursor:pointer; margin:0 15px;">
+                ← Назад
+            </button>
+            <button onclick="window.location.href='index.html'" style="padding:15px 35px; font-size:1.4rem; background:#3b82f6; color:white; border:none; border-radius:8px; cursor:pointer; margin:0 15px;">
+                🏠 Към началната страница
+            </button>
+        </div>
+    </footer>
 
     <script>
-        // ... (целият JavaScript от предишната версия – с обновен checkTest() за 22 задачи) ...
+        // Плъзгач
+        const slider = document.getElementById('numberSlider');
+        const sliderValue = document.getElementById('sliderValue');
+        const movingPoint = document.getElementById('movingPoint');
+        slider.oninput = function() {
+            let val = this.value / 10;
+            sliderValue.textContent = val % 1 === 0 ? val.toFixed(0) : val.toFixed(1).replace('.', ',');
+            let x = 100 + (val + 5) * 60;
+            movingPoint.setAttribute('cx', x);
+        };
+
+        // Tooltip за числовата ос
+        const tooltip = document.getElementById('tooltip');
+        const points = [
+            { id: 'p1', value: '-5/2', cx: 250 },
+            { id: 'p2', value: '-3/2', cx: 350 },
+            { id: 'p3', value: '-1/2', cx: 450 },
+            { id: 'p4', value: '1/2', cx: 550 },
+            { id: 'p5', value: '3/2', cx: 650 }
+        ];
+        points.forEach(p => {
+            const circle = document.getElementById(p.id);
+            circle.addEventListener('mouseenter', () => {
+                tooltip.textContent = p.value;
+                tooltip.classList.add('visible');
+                const svg = circle.ownerSVGElement;
+                const pt = svg.createSVGPoint();
+                pt.x = p.cx;
+                pt.y = 140;
+                const screenPt = pt.matrixTransform(svg.getScreenCTM());
+                tooltip.style.left = (screenPt.x - tooltip.offsetWidth / 2) + 'px';
+                tooltip.style.top = (screenPt.y - tooltip.offsetHeight - 10) + 'px';
+            });
+            circle.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+        });
+
+        // Случайни задачи
+        const tasks = [
+            { q: "Кое е по-голямо: -2,3 или -1,8?", a: "-1,8" },
+            { q: "|-9| = ?", a: "9" },
+            { q: "-5 + 8,5 = ?", a: "3,5" },
+            { q: "(-3) × (-2/3) = ?", a: "2" },
+            { q: "-7/2 е между кои цели числа?", a: "-4 и -3" },
+            { q: "Кое е по-малко: -5/6 или -0,8?", a: "-5/6" },
+            { q: "3,25 като дроб = ?", a: "13/4" },
+            { q: "Кое е по-голямо: -3,7 или -4,2?", a: "-3,7" },
+            { q: "0.(3) + 0,2 = ?", a: "0,5" }
+        ];
+        let currentTask = null;
+
+        function generateTask() {
+            currentTask = tasks[Math.floor(Math.random() * tasks.length)];
+            document.getElementById('randomTask').innerHTML = currentTask.q;
+            document.getElementById('taskAnswer').value = '';
+            document.getElementById('taskResult').innerHTML = '';
+        }
+
+        function checkTask() {
+            if (!currentTask) {
+                generateTask();
+                return;
+            }
+            let userAnswer = document.getElementById('taskAnswer').value.trim();
+            let correctAnswer = currentTask.a;
+            if (userAnswer.replace(',', '.') === correctAnswer.replace(',', '.')) {
+                document.getElementById('taskResult').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('taskResult').innerHTML = '<span style="color:#dc2626;">Още малко! Правилният отговор е: <strong>' + correctAnswer + '</strong> 😊</span>';
+            }
+        }
+
+        window.addEventListener('load', generateTask);
+
+        // Hover за множествата
+        const setsInfo = document.getElementById('setsInfo');
+        document.getElementById('n').addEventListener('mouseenter', () => {
+            setsInfo.textContent = 'ℕ – Естествени числа: 1, 2, 3, …';
+            setsInfo.classList.add('visible');
+        });
+        document.getElementById('z').addEventListener('mouseenter', () => {
+            setsInfo.textContent = 'ℤ – Цели числа: …, -2, -1, 0, 1, 2, …';
+            setsInfo.classList.add('visible');
+        });
+        document.getElementById('q').addEventListener('mouseenter', () => {
+            setsInfo.textContent = 'ℚ – Рационални числа: всички дроби и десетични от вида p/q';
+            setsInfo.classList.add('visible');
+        });
+        ['n', 'z', 'q'].forEach(id => {
+            document.getElementById(id).addEventListener('mouseleave', () => {
+                setsInfo.classList.remove('visible');
+            });
+        });
+
+        // Действия
+        function checkAdd() {
+            let ans = document.getElementById('addInput').value.trim().replace(',', '.');
+            if (["-2.5", "-2,5"].includes(ans)) {
+                document.getElementById('addResult').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('addResult').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е -2,5 😊</span>';
+            }
+        }
+
+        function checkSub() {
+            let ans = document.getElementById('subInput').value.trim().replace(',', '.');
+            if (["-1.5", "-1,5"].includes(ans)) {
+                document.getElementById('subResult').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('subResult').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е -1,5 😊</span>';
+            }
+        }
+
+        function checkFracAdd() {
+            let ans = document.getElementById('fracAddInput').value.trim();
+            if (ans === "-7/12") {
+                document.getElementById('fracAddResult').innerHTML = '<span style="color:#16a34a;">Отлично! 🎉</span>';
+            } else {
+                document.getElementById('fracAddResult').innerHTML = '<span style="color:#dc2626;">Правилният отговор е -7/12 😊</span>';
+            }
+        }
+
+        function checkMul() {
+            let ans = document.getElementById('mulInput').value.trim().replace(',', '.');
+            if (["-6/5", "-1.2", "-1,2"].includes(ans)) {
+                document.getElementById('mulResult').innerHTML = '<span style="color:#16a34a;">Браво! 🎉</span>';
+            } else {
+                document.getElementById('mulResult').innerHTML = '<span style="color:#dc2626;">Отговорът е -6/5 (или -1,2) 😊</span>';
+            }
+        }
+
+        function checkMulFrac() {
+            let ans = document.getElementById('mulFracInput').value.trim();
+            if (["-2/3", "-0.666...", "-0,(6)"].includes(ans.toLowerCase())) {
+                document.getElementById('mulFracResult').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('mulFracResult').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е -2/3 😊</span>';
+            }
+        }
+
+        function checkDiv() {
+            let ans = document.getElementById('divInput').value.trim();
+            if (ans === "-4") {
+                document.getElementById('divResult').innerHTML = '<span style="color:#16a34a;">Точно! 🎉</span>';
+            } else {
+                document.getElementById('divResult').innerHTML = '<span style="color:#dc2626;">Правилният отговор е -4 😊</span>';
+            }
+        }
+
+        function checkDivFrac() {
+            let ans = document.getElementById('divFracInput').value.trim();
+            if (["-15/8", "-1.875", "-1,875"].includes(ans)) {
+                document.getElementById('divFracResult').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('divFracResult').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е -15/8 😊</span>';
+            }
+        }
+
+        function checkBrackets() {
+            let ans = document.getElementById('bracketsInput').value.trim().replace(',', '.');
+            if (["-1.4", "-1,4", "-7/5"].includes(ans)) {
+                document.getElementById('bracketsResult').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('bracketsResult').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е -1,4 (или -7/5) 😊</span>';
+            }
+        }
+
+        function checkCombined() {
+            let ans = document.getElementById('combinedInput').value.trim().replace(',', '.');
+            if (["15", "15,0", "15.0"].includes(ans)) {
+                document.getElementById('combinedResult').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('combinedResult').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е 15 😊</span>';
+            }
+        }
+
+        function checkPower() {
+            let ans = document.getElementById('powerInput').value.trim().replace(',', '.');
+            if (["-7.75", "-7,75", "-31/4"].includes(ans)) {
+                document.getElementById('powerResult').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('powerResult').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е -7,75 (или -31/4) 😊</span>';
+            }
+        }
+
+        function checkMixed1() {
+            let ans = document.getElementById('mixed1Input').value.trim().replace(',', '.');
+            if (["2.033...", "2,033...", "61/30"].includes(ans.toLowerCase())) {
+                document.getElementById('mixed1Result').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('mixed1Result').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е около 2,033... (или 61/30) 😊</span>';
+            }
+        }
+
+        function checkMixed2() {
+            let ans = document.getElementById('mixed2Input').value.trim().replace(',', '.');
+            if (["1.75", "1,75", "7/4"].includes(ans)) {
+                document.getElementById('mixed2Result').innerHTML = '<span style="color:#16a34a;">Браво! Правилно! 🎉</span>';
+            } else {
+                document.getElementById('mixed2Result').innerHTML = '<span style="color:#dc2626;">Още малко! Отговорът е 1,75 (или 7/4) 😊</span>';
+            }
+        }
+
+        // Тест с 22 задачи
+        function checkTest() {
+            let score = 0;
+            
+            if (document.querySelector('input[name="q1"]:checked')?.value === "correct") score++;
+            if (document.getElementById('q2').value.trim() === "7") score++;
+            if (["2,5", "2.5"].includes(document.getElementById('q3').value.trim())) score++;
+            if (["2", "2,0", "2.0"].includes(document.getElementById('q4').value.trim())) score++;
+            if (document.querySelector('input[name="q5"]:checked')?.value === "correct") score++;
+            let q6 = document.getElementById('q6').value.trim().toLowerCase();
+            if (["4/5", "8/10", "0,8", "0.8"].includes(q6)) score++;
+            if (document.getElementById('q7').value.trim() === "-2") score++;
+            if (document.querySelector('input[name="q8"]:checked')?.value === "correct") score++;
+            if (document.getElementById('q9').value.trim() === "9") score++;
+            if (document.getElementById('q10').value.trim() === "-4") score++;
+            if (["9", "9/1"].includes(document.getElementById('q11').value.trim())) score++;
+
+            // Нови задачи
+            if (["4", "4,0"].includes(document.getElementById('q12').value.trim())) score++;
+            if (["-1/12", "-0.0833...", "-1/12"].includes(document.getElementById('q13').value.trim().toLowerCase())) score++;
+            if (["4.8", "4,8"].includes(document.getElementById('q14').value.trim().replace(',', '.'))) score++;
+            if (["27·3^4", "27*3^4", "27 \\cdot 3^4"].includes(document.getElementById('q15').value.trim().toLowerCase())) score++;
+            if (document.querySelector('input[name="q16"]:checked')?.value === "correct") score++;
+            if (["5.5", "5,5"].includes(document.getElementById('q17').value.trim())) score++;
+            if (["1/8", "0.125", "0,125"].includes(document.getElementById('q18').value.trim().toLowerCase())) score++;
+            if (["-0.125", "-1/8"].includes(document.getElementById('q19').value.trim().toLowerCase())) score++;
+            if (document.querySelector('input[name="q20"]:checked')?.value === "correct") score++;
+            if (["6", "6,0"].includes(document.getElementById('q21').value.trim())) score++;
+            if (["1", "1/1"].includes(document.getElementById('q22').value.trim().toLowerCase())) score++;
+
+            let message = score === 22 ? "Отлично! Перфектно! 🌟" :
+                          score >= 18 ? "Много добре! 👏" :
+                          score >= 14 ? "Добър опит! 💪" : "Не се отказвай! 😊";
+            document.getElementById('result').innerHTML = `Точки: ${score}/22<br><strong>${message}</strong><br>Продължавай да упражняваш! ✨`;
+        }
+
+        // Lazy load видео
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const container = entry.target;
+                    container.innerHTML = '<iframe src="https://www.youtube.com/embed/OASlJkdhh3E" title="Рационални и ирационални числа" frameborder="0" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%; border-radius:12px;"></iframe>';
+                    videoObserver.unobserve(container);
+                }
+            });
+        }, { threshold: 0.3 });
+        videoObserver.observe(document.getElementById('videoContainer'));
     </script>
 </body>
 </html>
