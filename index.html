@@ -78,7 +78,7 @@
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.45);
+            background: rgba(0, 0, 0, 0.4); /* Лек тъмен слой за контраст */
             border-radius: 16px;
             z-index: 0;
         }
@@ -88,44 +88,37 @@
         }
         #temi h2 {
             color: white;
-            border-bottom: 4px solid rgba(219, 234, 254, 0.6);
+            border-bottom: 4px solid rgba(219, 234, 254, 0.7);
             text-align: center;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+            margin-bottom: 60px;
         }
+        /* САМО НАДПИСИ – БЕЗ БУТОНИ */
         #temi ul.temi {
-            background-color: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 1100px;
         }
         #temi ul.temi li {
-            background: rgba(30, 50, 100, 0.5);
-            border-left: 6px solid #93c5fd;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        #temi ul.temi li:hover {
+            transform: scale(1.1); /* Леко увеличаване при hover за интерактивност */
         }
         #temi ul.temi li a {
             color: white;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
-            font-size: 1.3rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            font-size: 1.5rem;
+            font-weight: 700;
             text-decoration: none;
-        }
-        ul.temi {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 22px;
-            list-style: none;
-            padding: 0;
-        }
-        ul.temi li {
-            padding: 24px;
-            border-radius: 16px;
-            transition: all 0.3s;
-        }
-        ul.temi li:hover {
-            transform: translateY(-10px);
-            background: rgba(30, 50, 100, 0.7);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            display: block;
+            padding: 20px;
         }
         .images {
             display: flex;
@@ -153,7 +146,8 @@
         @media (max-width: 768px) {
             header h1 { font-size: 2.6rem; }
             nav a { display: block; margin: 12px 0; padding: 12px; }
-            ul.temi { grid-template-columns: 1fr; }
+            #temi ul.temi { grid-template-columns: 1fr; gap: 30px; }
+            #temi ul.temi li a { font-size: 1.3rem; }
         }
     </style>
 </head>
