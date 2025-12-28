@@ -34,20 +34,28 @@
         
         .container { max-width:1100px; margin:40px auto; padding:0 20px; }
         
-        .section, .example, .interactive, .test, .action-example, .question { 
+        .section, .example, .interactive, .test { 
             background: linear-gradient(135deg, #ffeef8 0%, #f0e5ff 50%, #e5f5ff 100%);
             border-radius:16px; 
             padding:35px; 
             margin-bottom:40px; 
             box-shadow:0 6px 20px rgba(0,0,0,0.08); 
         }
-        .example, .interactive, .action-example, .question { 
+        .example, .interactive { 
             padding:20px; 
             margin:20px 0; 
             border-radius:12px; 
             box-shadow:0 4px 12px rgba(0,0,0,0.05); 
         }
         .example { border-left:6px solid #3b82f6; }
+        
+        /* Един и същ пастелен фон за всички панели в "Действия" */
+        .action-example {
+            background: #f0e8ff; /* Лек пастелен лилаво-син нюанс – еднакъв за всички */
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
         
         /* Две колони за действията (3 панела на ред) */
         .actions-grid {
@@ -62,7 +70,7 @@
             }
         }
         
-        /* По-малки полета и бутони в действията */
+        /* По-малки полета и бутони */
         .action-input-small {
             font-size: 1.3rem;
             padding: 10px;
@@ -230,7 +238,6 @@
             <p>Правилата са същите като за обикновените дроби. Опитай сам да решиш примерите!</p>
             
             <div class="actions-grid">
-                <!-- Панел 1 -->
                 <div class="action-example">
                     <strong>1. Събиране:</strong><br>
                     -4 + 1,5 = ?<br><br>
@@ -247,7 +254,6 @@
                     <div class="action-result" id="subResult"></div>
                 </div>
                 
-                <!-- Панел 2 -->
                 <div class="action-example">
                     <strong>3. Събиране с различни знаменатели:</strong><br>
                     <span class="frac"><sup>-5</sup><sub>6</sub></span> + <span class="frac"><sup>1</sup><sub>4</sub></span> = ?<br><br>
@@ -264,7 +270,6 @@
                     <div class="action-result" id="mulResult"></div>
                 </div>
                 
-                <!-- Панел 3 -->
                 <div class="action-example">
                     <strong>5. Умножение на дроби:</strong><br>
                     <span class="frac"><sup>-3</sup><sub>4</sub></span> · <span class="frac"><sup>8</sup><sub>9</sub></span> = ?<br><br>
@@ -281,7 +286,6 @@
                     <div class="action-result" id="divResult"></div>
                 </div>
                 
-                <!-- Панел 4 -->
                 <div class="action-example">
                     <strong>7. Деление на дроби:</strong><br>
                     <span class="frac"><sup>3</sup><sub>4</sub></span> : <span class="frac"><sup>-2</sup><sub>5</sub></span> = ?<br><br>
@@ -298,7 +302,6 @@
                     <div class="action-result" id="bracketsResult"></div>
                 </div>
                 
-                <!-- Панел 5 -->
                 <div class="action-example">
                     <strong>9. Разпределително свойство:</strong><br>
                     -0,15 · (-93) - 0,15 · (-7) = ?<br><br>
@@ -315,7 +318,6 @@
                     <div class="action-result" id="powerResult"></div>
                 </div>
                 
-                <!-- Панел 6 -->
                 <div class="action-example">
                     <strong>11. Смесена задача:</strong><br>
                     2,5 + <span class="frac"><sup>1</sup><sub>3</sub></span> - 1,8 = ?<br><br>
