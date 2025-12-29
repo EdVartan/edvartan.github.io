@@ -167,9 +167,16 @@
             align-items: start;
         }
         @media (max-width: 768px) {
-            .two-columns { grid-template-columns: 1fr; }
-            .quick-nav { flex-direction: column; align-items: center; }
-            .nav-btn { width: 85%; }
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            .quick-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-btn {
+                width: 85%;
+            }
         }
         .left-column {
             background: #f0f8ff;
@@ -288,7 +295,6 @@
 
         <h2 id="general">1. Текстови задачи от общ характер</h2>
 
-        <!-- Задача 1 -->
         <div class="zadacha">
             <h3>Задача 1: Числа и цифри</h3>
             <p>Цифрата на десетиците на едно двуцифрено число е с 2 по-голяма от цифрата на единиците. Сборът на цифрите е \(\frac{1}{7}\) от числото. Намерете числото.</p>
@@ -317,7 +323,6 @@
             </div>
         </div>
 
-        <!-- Задача 2 -->
         <div class="zadacha">
             <h3>Задача 2: Сбор и разлика на две числа</h3>
             <p>Сборът на две числа е 85, а разликата им е 23. Намерете числата.</p>
@@ -344,7 +349,6 @@
             </div>
         </div>
 
-        <!-- Задача 3 -->
         <div class="zadacha">
             <h3>Задача 3: Част от едно число равно на част от друго</h3>
             <p>Едно число е 3 пъти по-голямо от друго. Ако към по-малкото прибавим 20, то ще стане равно на половината от по-голямото. Намерете числата.</p>
@@ -371,7 +375,6 @@
             </div>
         </div>
 
-        <!-- Задача 4 -->
         <div class="zadacha">
             <h3>Задача 4: Пазар – покупка на два вида стоки</h3>
             <p>В магазин едни ябълки струват 3 лв./кг, а други – 6 лв./кг. Купени са общо 15 кг ябълки от двата вида и е платено 51 лв. Колко килограма са купени от всеки вид?</p>
@@ -406,7 +409,6 @@
 
         <h2 id="movement">2. Задачи от движение (по суша и вода)</h2>
 
-        <!-- Задача 5 -->
         <div class="zadacha">
             <h3>Задача 5: Движение по суша (насрещно)</h3>
             <p>Двама пешеходци тръгват едновременно насреща един на друг от два града, отдалечени на 30 км, и се срещат след 4 часа. Първият върви с 4 км/ч. С каква скорост върви вторият?</p>
@@ -459,7 +461,6 @@
             </div>
         </div>
 
-        <!-- Задача 6 -->
         <div class="zadacha">
             <h3>Задача 6: Движение по вода</h3>
             <p>Лодка изминава едно и също разстояние по течение за 3 часа, а срещу течение – за 5 часа. Скоростта на течението е 2 км/ч. Намерете собствената скорост на лодката.</p>
@@ -528,19 +529,313 @@
 
         <h2 id="interest">3. Задачи от проста лихва</h2>
 
-        <!-- Задачи 7, 8, 9 – копирай от оригинала с resh7, answer7 и т.н. -->
+        <div class="zadacha">
+            <h3>Задача 7: Проста лихва – основна сума</h3>
+            <p>Вложени са пари в банка при проста лихва от 5% годишно. След 4 години лихвата е 400 лв. Колко лева е била основната сума?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh7')">Покажи/Скрий решението</button>
+            <div id="resh7" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека основната сума е <strong>x</strong> лв.</p>
+                        <p>Лихва: x × 0.05 × 4 = 400</p>
+                        <p><strong>Уравнение:</strong><br>0.2x = 400</p>
+                        <p>x = 2000</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Величина</th><th>Стойност</th></tr>
+                            <tr><td>Основна сума</td><td>x лв.</td></tr>
+                            <tr><td>Лихвен процент</td><td>5%</td></tr>
+                            <tr><td>Време</td><td>4 години</td></tr>
+                            <tr><td>Лихва</td><td>400 лв.</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">Основната сума е 2000 лв.</div>
+            </div>
+            <div class="check-answer">
+                <label>Основна сума (лв.): </label>
+                <input type="number" id="answer7">
+                <button onclick="checkAnswer(7, 2000)">Провери</button>
+                <p id="result7" class="result"></p>
+            </div>
+        </div>
+
+        <div class="zadacha">
+            <h3>Задача 8: Проста лихва – лихвен процент</h3>
+            <p>Вложени са 5000 лв. в банка при проста лихва. След 3 години лихвата е 900 лв. С какъв годишен лихвен процент са вложени парите?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh8')">Покажи/Скрий решението</button>
+            <div id="resh8" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека лихвеният процент е <strong>x</strong>%.</p>
+                        <p>Лихва: 5000 × (x/100) × 3 = 900</p>
+                        <p><strong>Уравнение:</strong><br>150x = 900</p>
+                        <p>x = 6</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Величина</th><th>Стойност</th></tr>
+                            <tr><td>Основна сума</td><td>5000 лв.</td></tr>
+                            <tr><td>Лихвен процент</td><td>x %</td></tr>
+                            <tr><td>Време</td><td>3 години</td></tr>
+                            <tr><td>Лихва</td><td>900 лв.</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">Годишният лихвен процент е 6%.</div>
+            </div>
+            <div class="check-answer">
+                <label>Лихвен процент (%): </label>
+                <input type="number" id="answer8">
+                <button onclick="checkAnswer(8, 6)">Провери</button>
+                <p id="result8" class="result"></p>
+            </div>
+        </div>
+
+        <div class="zadacha">
+            <h3>Задача 9: Проста лихва – време</h3>
+            <p>Вложени са 8000 лв. при проста лихва от 4% годишно. След колко години лихвата ще бъде 1600 лв.?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh9')">Покажи/Скрий решението</button>
+            <div id="resh9" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека времето е <strong>x</strong> години.</p>
+                        <p>Лихва: 8000 × 0.04 × x = 1600</p>
+                        <p><strong>Уравнение:</strong><br>320x = 1600</p>
+                        <p>x = 5</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Величина</th><th>Стойност</th></tr>
+                            <tr><td>Основна сума</td><td>8000 лв.</td></tr>
+                            <tr><td>Лихвен процент</td><td>4%</td></tr>
+                            <tr><td>Време</td><td>x години</td></tr>
+                            <tr><td>Лихва</td><td>1600 лв.</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">Лихвата ще бъде 1600 лв. след 5 години.</div>
+            </div>
+            <div class="check-answer">
+                <label>Време (години): </label>
+                <input type="number" id="answer9">
+                <button onclick="checkAnswer(9, 5)">Провери</button>
+                <p id="result9" class="result"></p>
+            </div>
+        </div>
 
         <button class="back-to-nav" onclick="document.querySelector('.quick-nav').scrollIntoView({behavior: 'smooth'});">↑ Обратно към избора на категории</button>
 
         <h2 id="work">4. Задачи от работа (производителност)</h2>
 
-        <!-- Задачи 10, 11 – копирай от оригинала -->
+        <div class="zadacha">
+            <h3>Задача 10: Багер и нива</h3>
+            <p>Един багер трябвало да изоре една нива за 12 дни. След като увеличил дневната си норма с 10 декара, той успял да изоре нивата за 10 дни. Колко декара е била нивата?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh10')">Покажи/Скрий решението</button>
+            <div id="resh10" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека дневната норма по план е <strong>x</strong> декара.</p>
+                        <p>Тогава площта на нивата е <strong>12x</strong> декара.</p>
+                        <p>В действителност дневната норма е <strong>x + 10</strong> декара.</p>
+                        <p>С тази норма изорал нивата за 10 дни → площта е <strong>10(x + 10)</strong> декара.</p>
+                        <p><strong>Уравнение:</strong><br>12x = 10(x + 10)</p>
+                        <p>12x = 10x + 100<br>2x = 100<br>x = 50</p>
+                        <p>Площта на нивата е 12 × 50 = 600 декара.</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Вид</th><th>Дневна норма (декара)</th><th>Дни</th><th>Площ (декара)</th></tr>
+                            <tr><td>По план</td><td>x</td><td>12</td><td>12x</td></tr>
+                            <tr><td>В действителност</td><td>x + 10</td><td>10</td><td>10(x + 10)</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">Нивата е 600 декара.</div>
+            </div>
+            <div class="check-answer">
+                <label>Площ на нивата (декара): </label>
+                <input type="number" id="answer10">
+                <button onclick="checkAnswer(10, 600)">Провери</button>
+                <p id="result10" class="result"></p>
+            </div>
+        </div>
+
+        <div class="zadacha">
+            <h3>Задача 11: Стругар и детайли</h3>
+            <p>Стругар искал да произведе определено количество детайли за определен срок, като произвежда по 20 детайла на ден. След като работил така 4 дни, увеличил дневната си норма с 10 детайла и един ден преди срока произвел 300 детайла повече от предвиденото. За колко дни е бил срокът и колко детайла е трябвало да произведе?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh11')">Покажи/Скрий решението</button>
+            <div id="resh11" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека плановият срок е <strong>x</strong> дни.</p>
+                        <p>Тогава количеството детайли по план е <strong>20x</strong>.</p>
+                        <p>Първите 4 дни произвел 80 детайла.</p>
+                        <p>Оставащи дни в действителност: x – 5</p>
+                        <p>Произвел за оставащите дни: 30(x – 5)</p>
+                        <p>Общо произвел: 80 + 30(x – 5) = 20x + 300</p>
+                        <p><strong>Уравнение:</strong><br>80 + 30(x – 5) = 20x + 300</p>
+                        <p>80 + 30x – 150 = 20x + 300<br>30x – 70 = 20x + 300<br>10x = 370<br>x = 37</p>
+                        <p>Детайли по план: 20 × 37 = 740</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Вид</th><th>Норма (детайла/ден)</th><th>Дни</th><th>Произведени детайли</th></tr>
+                            <tr><td>По план</td><td>20</td><td>x</td><td>20x</td></tr>
+                            <tr><td>В действителност – първи 4 дни</td><td>20</td><td>4</td><td>80</td></tr>
+                            <tr><td>В действителност – останали дни</td><td>30</td><td>x – 5</td><td>30(x – 5)</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">Срокът е 37 дни, поръчката е за 740 детайла.</div>
+            </div>
+            <div class="check-answer">
+                <label>Срок (дни): </label>
+                <input type="number" id="answer11a">
+                <button onclick="checkAnswer(11, 37)">Провери дни</button>
+                <label style="margin-left:20px;">Детайли: </label>
+                <input type="number" id="answer11b">
+                <button onclick="checkAnswer(11, 740)">Провери детайли</button>
+                <p id="result11" class="result"></p>
+            </div>
+        </div>
 
         <button class="back-to-nav" onclick="document.querySelector('.quick-nav').scrollIntoView({behavior: 'smooth'});">↑ Обратно към избора на категории</button>
 
         <h2 id="mix">5. Задачи от смеси и сплави</h2>
 
-        <!-- Задачи 12, 13, 14, 15 – копирай от оригинала -->
+        <div class="zadacha">
+            <h3>Задача 12: Смес от два вида кафе</h3>
+            <p>Имаме два вида кафе – първият съдържа 70% арабика, вторият – 100% арабика. Колко килограма от всеки вид трябва да смесим, за да получим 10 кг смес с 76% арабика?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh12')">Покажи/Скрий решението</button>
+            <div id="resh12" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека от първия вид вземем <strong>x</strong> кг.</p>
+                        <p>Тогава от втория вид: 10 – x кг.</p>
+                        <p>Арабика: 0.7x + 1.0(10 – x) = 0.76 × 10</p>
+                        <p><strong>Уравнение:</strong><br>0.7x + 10 – x = 7.6</p>
+                        <p>10 – 0.3x = 7.6<br>0.3x = 2.4<br>x = 8</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Вид</th><th>Количество (кг)</th><th>Арабика (%)</th><th>Арабика (кг)</th></tr>
+                            <tr><td>Първи</td><td>x</td><td>70</td><td>0.7x</td></tr>
+                            <tr><td>Втори</td><td>10 – x</td><td>100</td><td>10 – x</td></tr>
+                            <tr><td>Смес</td><td>10</td><td>76</td><td>7.6</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">От първия вид: 8 кг<br>От втория вид: 2 кг</div>
+            </div>
+            <div class="check-answer">
+                <label>Количество от първия вид: </label>
+                <input type="number" id="answer12">
+                <button onclick="checkAnswer(12, 8)">Провери</button>
+                <p id="result12" class="result"></p>
+            </div>
+        </div>
+
+        <div class="zadacha">
+            <h3>Задача 13: Смес от две сплави</h3>
+            <p>Имаме сплав с 80% злато и сплав с 50% злато. Колко грама от всяка сплав трябва да смесим, за да получим 100 г сплав с 68% злато?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh13')">Покажи/Скрий решението</button>
+            <div id="resh13" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека от 80% сплав вземем <strong>x</strong> г.</p>
+                        <p>Тогава от 50% сплав: 100 – x г.</p>
+                        <p>Злато: 0.8x + 0.5(100 – x) = 68</p>
+                        <p><strong>Уравнение:</strong><br>0.8x + 50 – 0.5x = 68</p>
+                        <p>0.3x = 18<br>x = 60</p>
+                        <p>От 80% сплав: 60 г<br>От 50% сплав: 40 г</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Сплав</th><th>Количество (г)</th><th>Чисто в-во (злато, %)</th><th>Злато (г)</th></tr>
+                            <tr><td>80%</td><td>x</td><td>80</td><td>0.8x</td></tr>
+                            <tr><td>50%</td><td>100 – x</td><td>50</td><td>0.5(100 – x)</td></tr>
+                            <tr><td>Смес</td><td>100</td><td>68</td><td>68</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">От 80% сплав: 60 г<br>От 50% сплав: 40 г</div>
+            </div>
+            <div class="check-answer">
+                <label>Количество от 80% сплав: </label>
+                <input type="number" id="answer13">
+                <button onclick="checkAnswer(13, 60)">Провери</button>
+                <p id="result13" class="result"></p>
+            </div>
+        </div>
+
+        <div class="zadacha">
+            <h3>Задача 14: Смес от разтвор и вода</h3>
+            <p>Имаме 40% разтвор на сол и чиста вода. Колко грама от 40% разтвор трябва да добавим към 300 г вода, за да получим 20% разтвор?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh14')">Покажи/Скрий решението</button>
+            <div id="resh14" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека добавим <strong>x</strong> г от 40% разтвор.</p>
+                        <p>Сол в разтвора: 0.4x г</p>
+                        <p>Общо тегло на сместа: 300 + x г</p>
+                        <p>Сол в сместа: 0.4x г</p>
+                        <p>Концентрация: \(\frac{0.4x}{300 + x} = 0.2\)</p>
+                        <p><strong>Уравнение:</strong><br>0.4x = 0.2(300 + x)</p>
+                        <p>0.4x = 60 + 0.2x<br>0.2x = 60<br>x = 300</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Разтвор</th><th>Количество разтвор (г)</th><th>Чисто в-во (сол, %)</th><th>Количество чисто в-во (сол, г)</th></tr>
+                            <tr><td>Първи р-р (вода)</td><td>300</td><td>0</td><td>0</td></tr>
+                            <tr><td>Втори р-р</td><td>x</td><td>40</td><td>0.4x</td></tr>
+                            <tr><td>Смес</td><td>300 + x</td><td>20</td><td>0.2(300 + x)</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">Трябва да добавим 300 г от 40% разтвор.</div>
+            </div>
+            <div class="check-answer">
+                <label>Количество от 40% разтвор: </label>
+                <input type="number" id="answer14">
+                <button onclick="checkAnswer(14, 300)">Провери</button>
+                <p id="result14" class="result"></p>
+            </div>
+        </div>
+
+        <div class="zadacha">
+            <h3>Задача 15: Смес от две сплави</h3>
+            <p>Имаме сплав с 90% злато и сплав с 50% злато. Колко грама от всяка сплав трябва да смесим, за да получим 100 г сплав с 66% злато?</p>
+            <button class="show-btn" onclick="toggleReshenie('resh15')">Покажи/Скрий решението</button>
+            <div id="resh15" class="reshenie">
+                <div class="two-columns">
+                    <div class="left-column">
+                        <p>Нека от 90% сплав вземем <strong>x</strong> г.</p>
+                        <p>Тогава от 50% сплав: 100 – x г.</p>
+                        <p>Злато: 0.9x + 0.5(100 – x) = 66</p>
+                        <p><strong>Уравнение:</strong><br>0.9x + 50 – 0.5x = 66</p>
+                        <p>0.4x = 16<br>x = 40</p>
+                        <p>От 90% сплав: 40 г<br>От 50% сплав: 60 г</p>
+                    </div>
+                    <div class="right-column">
+                        <table>
+                            <tr><th>Сплав</th><th>Количество (г)</th><th>Чисто в-во (злато, %)</th><th>Злато (г)</th></tr>
+                            <tr><td>90%</td><td>x</td><td>90</td><td>0.9x</td></tr>
+                            <tr><td>50%</td><td>100 – x</td><td>50</td><td>0.5(100 – x)</td></tr>
+                            <tr><td>Смес</td><td>100</td><td>66</td><td>66</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="otgovor">От 90% сплав: 40 г<br>От 50% сплав: 60 г</div>
+            </div>
+            <div class="check-answer">
+                <label>Количество от 90% сплав: </label>
+                <input type="number" id="answer15">
+                <button onclick="checkAnswer(15, 40)">Провери</button>
+                <p id="result15" class="result"></p>
+            </div>
+        </div>
 
         <button class="back-to-nav" onclick="document.querySelector('.quick-nav').scrollIntoView({behavior: 'smooth'});">↑ Обратно към избора на категории</button>
 
