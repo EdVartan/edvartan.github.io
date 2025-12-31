@@ -20,12 +20,12 @@
             padding: 80px 20px 100px;
             margin-bottom: 60px;
             overflow: hidden;
-            background: url('https://classroomclipart.com/clipart/images/animated-teacher-writing-on-blackboard.gif') center center / contain no-repeat #e8f4fc;
+            background: url('https://www.shutterstock.com/image-vector/fun-math-lesson-students-raised-600nw-2639996011.jpg') center center / cover no-repeat;
         }
         .header-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.55);
         }
         h1 {
             position: relative;
@@ -267,10 +267,8 @@
         <div class="header-overlay"></div>
         <h1>Моделиране на текстови задачи с линейни уравнения</h1>
     </div>
-
     <div class="container">
         <p class="subtitle">Решете задачите самостоятелно, след това проверете решението си!</p>
-
         <div class="quick-nav">
             <button class="nav-btn btn-general" onclick="document.getElementById('general').scrollIntoView({behavior: 'smooth'});">1. Общ характер</button>
             <button class="nav-btn btn-movement" onclick="document.getElementById('movement').scrollIntoView({behavior: 'smooth'});">2. Движение</button>
@@ -679,10 +677,10 @@
             <div class="check-answer">
                 <label>Срок (дни): </label>
                 <input type="number" id="answer11a">
-                <button onclick="checkAnswer(11, 37)">Провери дни</button>
+                <button onclick="checkAnswer(11,37)">Провери дни</button>
                 <label style="margin-left:20px;">Детайли: </label>
                 <input type="number" id="answer11b">
-                <button onclick="checkAnswer(11, 740)">Провери детайли</button>
+                <button onclick="checkAnswer(11,740)">Провери детайли</button>
                 <p id="result11" class="result"></p>
             </div>
         </div>
@@ -833,11 +831,32 @@
             var el = document.getElementById(id);
             if (el) el.style.display = (el.style.display === "block") ? "none" : "block";
         }
-
         function checkAnswer(taskNum, correct) {
             let input = document.getElementById('answer' + taskNum);
             let result = document.getElementById('result' + taskNum);
-            if (!input || !result) return;
+            if (!input || !result) {
+                if (taskNum === 11) {
+                    let inputA = document.getElementById('answer11a');
+                    let inputB = document.getElementById('answer11b');
+                    let res = document.getElementById('result11');
+                    let valA = parseFloat(inputA.value);
+                    let valB = parseFloat(inputB.value);
+                    if (isNaN(valA) || isNaN(valB)) {
+                        res.innerHTML = "Въведете и двете числа.";
+                        res.style.color = "orange";
+                        return;
+                    }
+                    if (valA === 37 && valB === 740) {
+                        res.innerHTML = "✓ И двата отговора са правилни!";
+                        res.style.color = "green";
+                    } else {
+                        res.innerHTML = "✗ Проверете отговорите.";
+                        res.style.color = "red";
+                    }
+                    return;
+                }
+                return;
+            }
             let userAnswer = parseFloat(input.value);
             if (isNaN(userAnswer)) {
                 result.innerHTML = "Въведете число.";
